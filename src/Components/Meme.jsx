@@ -10,7 +10,8 @@ export default function Meme() {
 
     const [allMemeImages, setAllMemeImages] = React.useState(memesData);
 
-    function renderMeme() {
+    function renderMeme(event) {
+        event.preventDefault();
         const memesArray = allMemeImages.data.memes;
         const randomNumber = Math.floor(Math.random() * memesArray.length);
         const url = memesArray[randomNumber].url;
@@ -54,7 +55,7 @@ export default function Meme() {
                     value={meme.bottomText}
                 />
                 <button onClick={renderMeme} className="form--button">
-                    Submit
+                    Get a new meme!
                 </button>
             </form>
             <div className="meme">
