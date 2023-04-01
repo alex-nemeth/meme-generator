@@ -23,6 +23,17 @@ export default function Meme() {
         });
     }
 
+    function handleChange(event) {
+        setMeme((prevState) => {
+            return {
+                ...prevState,
+                [event.target.name]: event.target.value,
+            };
+        });
+    }
+
+    console.log(meme);
+
     return (
         <main>
             <form className="form">
@@ -30,17 +41,27 @@ export default function Meme() {
                     className="form--input"
                     type="text"
                     placeholder="Top Text"
+                    onChange={handleChange}
+                    name="topText"
+                    value={meme.topText}
                 />
                 <input
                     className="form--input"
                     type="text"
                     placeholder="Bottom Text"
+                    onChange={handleChange}
+                    name="bottomText"
+                    value={meme.bottomText}
                 />
                 <button onClick={renderMeme} className="form--button">
                     Submit
                 </button>
             </form>
-            <img src={meme.randomImage} className="meme--image" />
+            <div className="meme">
+                <img src={meme.randomImage} className="meme--image" />
+                <h2 className="meme--text top">{meme.topText}</h2>
+                <h2 className="meme--text bottom">{meme.bottomText}</h2>
+            </div>
         </main>
     );
 }
